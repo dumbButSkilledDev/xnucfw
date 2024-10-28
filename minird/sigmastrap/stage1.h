@@ -5,4 +5,4 @@ using namespace std;
 
 namespace sigmastrap {
     void startStage1();
-} // e
+}

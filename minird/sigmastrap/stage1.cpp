@@ -6,11 +6,16 @@ void sigmastrap::startStage1() {
     // so.....
 
     // the bootstrap is already inside the ramdisk, we just need to extract it
-    ifstream bootstrap_dp("/usr/share/xnucfw/bootstrap-iphoneos-arm64.tar");
+    ifstream bootstrap_dp("/usr/share/xnucfw/bootstrap.tar");
+    string bootstrapPath = "/usr/share/xnucfw/bootstrap.tar";
     if (!bootstrap_dp) {
-        logger::log("bootstrap not found in /usr/share/xnucfw, using /usr/share");
-        system("tar --preserve-permissions -xkf /usr/share/bootstrap.tar -C /");
-    } else {
-        system("tar --preserve-permissions -xkf /usr/share/xnucfw/bootstrap.tar -C /");
+        logger::log("(WARN) bootstrap not found in /usr/share/xnucfw, using /usr/share");
+        bootstrapPath = "/usr/share/bootstrap.tar";
     }
+
+    logger::log("extracting bootstrap.....");
+    string extractCmd = "tar --preserve-permissions -xkf " + bootstrapPath + " -C /";
+    system(extractCmd.c_str());
+
+    logger::log("stage 1 complete!");
 }

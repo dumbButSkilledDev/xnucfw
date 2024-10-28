@@ -4,7 +4,7 @@ include $(THEOS)/makefiles/common.mk
 
 TOOL_NAME = sigmastrap
 
-sigmastrap_FILES = main.cpp logger.cpp
+sigmastrap_FILES = main.cpp logger.cpp stage1.cpp
 sigmastrap_CFLAGS = -fobjc-arc
 sigmastrap_CODESIGN_FLAGS = -Sentitlements.plist
 sigmastrap_INSTALL_PATH = /usr/local/bin
